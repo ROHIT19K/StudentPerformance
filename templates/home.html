@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Exam Performance Indicator</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #74b9ff, #a29bfe);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .login {
+            background: #ffffffcc;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2d3436;
+            margin-bottom: 10px;
+        }
+
+        legend {
+            font-size: 18px;
+            color: #0984e3;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .mb-3 {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2d3436;
+            font-weight: 600;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #b2bec3;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        select:focus,
+        input:focus {
+            border-color: #0984e3;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #0984e3;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #74b9ff;
+        }
+
+        h2 {
+            margin-top: 25px;
+            color: #2d3436;
+            background: #dfe6e9;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        option.placeholder {
+            color: #636e72;
+        }
+    </style>
+</head>
+<body>
+    <div class="login">
+       <h1>Student Exam Performance Indicator</h1>
+       <form action="{{url_for('predict_datapoint')}}" method="post">
+            <legend>Student Exam Performance Prediction</legend>
+
+            <div class="mb-3">
+                <label>Gender</label>
+                <select name="gender" required>
+                    <option class="placeholder" selected disabled value="">Select your Gender</option>
+                    <option value="male">male</option>
+                    <option value="female">female</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label>Race or Ethnicity</label>
+                <select name="ethnicity" required>
+                    <option class="placeholder" selected disabled value="">Select Ethnicity</option>
+                    <option value="group A">group A</option>
+                    <option value="group B">group B</option>
+                    <option value="group C">group C</option>
+                    <option value="group D">group D</option>
+                    <option value="group E">group E</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label>Parental Level of Education</label>
+                <select name="parental_level_of_education" required>
+                    <option class="placeholder" selected disabled value="">Select Parent Education</option>
+                    <option value="associate's degree">associate's degree</option>
+                    <option value="bachelor's degree">bachelor's degree</option>
+                    <option value="high school">high school</option>
+                    <option value="master's degree">master's degree</option>
+                    <option value="some college">some college</option>
+                    <option value="some high school">some high school</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label>Lunch Type</label>
+                <select name="lunch" required>
+                    <option class="placeholder" selected disabled value="">Select Lunch Type</option>
+                    <option value="free/reduced">free/reduced</option>
+                    <option value="standard">standard</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label>Test Preparation Course</label>
+                <select name="test_preparation_course" required>
+                    <option class="placeholder" selected disabled value="">Select Test_course</option>
+                    <option value="none">none</option>
+                    <option value="completed">completed</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label>Writing Score out of 100</label>
+                <input type="number" name="reading_score" min="0" max="100" placeholder="Enter your Reading Score" required />
+            </div>
+
+            <div class="mb-3">
+                <label>Reading Score out of 100</label>
+                <input type="number" name="writing_score" min="0" max="100" placeholder="Enter your Writing Score" required />
+            </div>
+
+            <div class="mb-3">
+                <input class="btn" type="submit" value="Predict your Maths Score" />
+            </div>
+        </form>
+
+        <h2>Prediction: {{results}}</h2>
+    </div>
+</body>
+</html>
